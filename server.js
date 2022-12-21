@@ -32,22 +32,14 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // })
 
     //display index.ejs with the quotes passed into the file in response to browser request
-
+    //log database to the console is not working
       app.get('/', (req, res) => {
         db.collection('quotes').find().toArray()
           .then(results => {
             res.render('index.ejs', { quotes: results })
-          })
-          .catch(/* ... */)
-      })
-
-    //log database to the console... this is not working
-    app.get('/', (req, res) => {
-        db.collection('quotes').find().toArray()
-          .then(results => {
             console.log(results)
           })
-          .catch(error => console.error(error))
+          .catch(/* ... */)
       })
 
     app.post('/quotes', (req, res) => {
